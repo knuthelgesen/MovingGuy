@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GUI>
 	<Page name="SplashScreen" focusedComponentName="splashScreenBackground">
-		<ColoredPanel name="splashScreenBackground" color="WHITE" layoutEngine="CoverParentLayoutEngine"
+		<Panel name="splashScreenBackground" color="WHITE" layoutEngine="CoverParentLayoutEngine"
 				keyboardEventListener="SplashScreenKeyboardEventListener">
-			<TexturedPanel color="WHITE" requestedBounds="-400,-125,400,125" layoutEngine="RelativePositionLayoutEngine"
+			<Panel color="WHITE" requestedBounds="-400,-125,400,125" layoutEngine="RelativePositionLayoutEngine"
 					horizontalAlignment="CENTER" verticalAlignment="CENTER" texture="plasmidSplash" 
 					textureCoordinates="0.0,1.0,1.0,0.0" />
-		</ColoredPanel>
+		</Panel>
 	</Page>
 	<!-- Page for the menus -->
 	<Page name="MainMenuPage" focusedComponentName="mainMenu">
-		<TexturedPanel color="WHITE" layoutEngine="CoverParentLayoutEngine" texture="menuPageBackground"
+		<Panel color="WHITE" layoutEngine="CoverParentLayoutEngine" texture="menuPageBackground"
 				textureCoordinates="0.0,3.0,3.0,0.0">
 			<!-- Main menu -->
 			<Menu name="mainMenu" color="#ffffff88" requestedBounds="-200,-200,0,200"
@@ -78,6 +78,6 @@
 							textSize="18,36"/>
 				</MenuItem>
 			</Menu>
-		</TexturedPanel>
+		</Panel>
 	</Page>
 </GUI>

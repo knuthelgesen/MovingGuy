@@ -6,6 +6,6 @@ package no.plasmid.movingguy.gui;
  * @author helgesk
  *
  */
-public class MenuItem extends TexturedPanel {
+public class MenuItem extends Panel {
 
 }

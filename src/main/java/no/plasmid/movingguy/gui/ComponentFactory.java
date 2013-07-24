@@ -40,40 +40,7 @@ public class ComponentFactory {
 	}
 
 	/**
-	 * Create a colored panel. If a name is provided, the panel will be registered with the GUIManager service. If an
-	 * attribute that is vital for correct rendering is missing, a warning will be logged.
-	 * @param name The optional name of the panel
-	 * @param color The color used when rendering the panel
-	 * @param requestedBouds The requested size and position of the panel
-	 * @param layoutEngine The layout engine to use when calculating final position and size
-	 * @param horizontalAlignment The alignment on the horizontal axis
-	 * @param verticalAlignment The alignment on the vertical axis
-	 * @return the newly created panel
-	 */
-	public static ColoredPanel createColoredPanel(String name, Color color, Rectangle<Integer> requestedBouds,
-			LayoutEngine layoutEngine, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment) {
-		//Check input
-		if (null == color || null == requestedBouds || null == layoutEngine || null == horizontalAlignment
-				|| null == verticalAlignment) {
-			//TODO log a warning that the component might not be shown correctly
-		}
-		
-		//Create the panel and set values
-		ColoredPanel rc = new ColoredPanel();
-		rc.setColor(color);
-		rc.setRequestedBounds(requestedBouds);
-		rc.setLayoutEngine(layoutEngine);
-		rc.setHorizontalAlignment(horizontalAlignment);
-		rc.setVerticalAlignment(verticalAlignment);
-		
-		//If there is a name, register the component as a named component
-		addNameToComponent(rc, name);
-		
-		return rc;
-	}
-	
-	/**
-	 * Create a textured panel. If a name is provided, the panel will be registered with the GUIManager service. If an
+	 * Create a panel. If a name is provided, the panel will be registered with the GUIManager service. If an
 	 * attribute that is vital for correct rendering is missing, a warning will be logged.
 	 * @param name The optional name of the panel
 	 * @param color The color used when rendering the panel
@@ -85,17 +52,25 @@ public class ComponentFactory {
 	 * @param textureCoordinates The texture coordinates to use when rendering
 	 * @return the newly created panel
 	 */
-	public static TexturedPanel createTexturedPanel(String name, Color color, Rectangle<Integer> requestedBouds,
+	public static Panel createPanel(String name, Color color, Rectangle<Integer> requestedBouds,
 			LayoutEngine layoutEngine, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment,
 			Texture texture, Rectangle<Double> textureCoordinates) {
 		//Check input
 		if (null == color || null == requestedBouds || null == layoutEngine || null == horizontalAlignment
-				|| null == verticalAlignment || null == texture || null == textureCoordinates) {
+				|| null == verticalAlignment) {
 			//TODO log a warning that the component might not be shown correctly
 		}
 
+		//Set default values if null is provided
+		if (null == texture) {
+			texture = Texture.EMPTY;
+		}
+		if (null == textureCoordinates) {
+			textureCoordinates = Rectangle.zeroSizeDoubleRectangle;
+		}
+		
 		//Create the panel and set values
-		TexturedPanel rc = new TexturedPanel();
+		Panel rc = new Panel();
 		rc.setColor(color);
 		rc.setRequestedBounds(requestedBouds);
 		rc.setLayoutEngine(layoutEngine);

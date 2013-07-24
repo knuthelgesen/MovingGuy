@@ -7,7 +7,7 @@ package no.plasmid.movingguy.gui;
  * @author helgesk
  *
  */
-public class TextLabel extends ColoredPanel {
+public class TextLabel extends Panel {
 
 	/**
 	 * The textual value of the component

@@ -6,8 +6,13 @@ package no.plasmid.movingguy.gui;
  * @author helgesk
  *
  */
-public class TexturedPanel extends ColoredPanel {
+public class Panel extends Component {
 
+	/**
+	 * The color used when rendering this panel
+	 */
+	private Color color = null;
+		
 	/**
 	 * The texture to use when rendering this panel
 	 */
@@ -21,12 +26,28 @@ public class TexturedPanel extends ColoredPanel {
 	/**
 	 * Construct a panel with size = 0 and empty texture
 	 */
-	public TexturedPanel() {
+	public Panel() {
 		textureCoordinates = new Rectangle<Double>(0.0, 1.0, 1.0, 0.0);
 
 		texture = Texture.EMPTY;
 	}
 	
+	/**
+	 * @return the color used when rendering this panel
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * Set which color to use when rendering the panel
+	 * 
+	 * @param color the color to use when rendering the panel
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	/**
 	 * @return the texture used when rendering this panel
 	 */

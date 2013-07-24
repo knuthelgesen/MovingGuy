@@ -16,7 +16,7 @@ import no.plasmid.movingguy.service.ServiceManager;
  * @author helgesk
  *
  */
-public class Menu extends TexturedPanel {
+public class Menu extends Panel {
 	
 	/**
 	 * Reference to the GUI manager, used to setting the focused component when the user selects different menu items
@@ -36,7 +36,7 @@ public class Menu extends TexturedPanel {
 	/**
 	 * A textured panel used to show the currently selected item
 	 */
-	private TexturedPanel selectedItemMarker = null;
+	private Panel selectedItemMarker = null;
 	
 	/**
 	 * Constructor
@@ -190,7 +190,7 @@ public class Menu extends TexturedPanel {
 	 * 
 	 * @param selectedItemMarker the textured panel to use as a selection marker
 	 */
-	public void setSelectedItemMarker(TexturedPanel selectedItemMarker) {
+	public void setSelectedItemMarker(Panel selectedItemMarker) {
 		this.selectedItemMarker = selectedItemMarker;
 	}
 	

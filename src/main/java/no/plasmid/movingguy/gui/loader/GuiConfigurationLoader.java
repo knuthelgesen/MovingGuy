@@ -17,7 +17,7 @@ import no.plasmid.movingguy.gui.RelativePositionLayoutEngine;
 import no.plasmid.movingguy.gui.RelativePositionLayoutEngine.HorizontalAlignment;
 import no.plasmid.movingguy.gui.RelativePositionLayoutEngine.VerticalAlignment;
 import no.plasmid.movingguy.gui.Texture;
-import no.plasmid.movingguy.gui.TexturedPanel;
+import no.plasmid.movingguy.gui.Panel;
 import no.plasmid.movingguy.gui.event.ExitMenuItemKeyboardEventListener;
 import no.plasmid.movingguy.gui.event.KeyboardEventListener;
 import no.plasmid.movingguy.gui.event.MenuKeyboardEventListener;
@@ -65,12 +65,12 @@ public class GuiConfigurationLoader extends XmlConfigurationLoader {
 		case "Page":
 			createdComponent = ComponentFactory.createPage(name, focusedComponentName);
 			break;
-		case "ColoredPanel":
-			createdComponent = ComponentFactory.createColoredPanel(name, color, requestedBounds, layoutEngine,
-					horizontalAlignment, verticalAlignment);
-			break;
-		case "TexturedPanel":
-			createdComponent = ComponentFactory.createTexturedPanel(name, color, requestedBounds, layoutEngine,
+//		case "ColoredPanel":
+//			createdComponent = ComponentFactory.createColoredPanel(name, color, requestedBounds, layoutEngine,
+//					horizontalAlignment, verticalAlignment);
+//			break;
+		case "Panel":
+			createdComponent = ComponentFactory.createPanel(name, color, requestedBounds, layoutEngine,
 					horizontalAlignment, verticalAlignment, texture, textureCoordinates);
 			break;
 		case "Menu":
@@ -83,9 +83,9 @@ public class GuiConfigurationLoader extends XmlConfigurationLoader {
 			((Menu)parent).addMenuItem((MenuItem)createdComponent);
 			break;
 		case "SelectedItemMarker":
-			createdComponent = ComponentFactory.createTexturedPanel(name, color, requestedBounds, layoutEngine,
+			createdComponent = ComponentFactory.createPanel(name, color, requestedBounds, layoutEngine,
 					horizontalAlignment, verticalAlignment, texture, textureCoordinates);
-			((Menu)parent).setSelectedItemMarker((TexturedPanel)createdComponent);
+			((Menu)parent).setSelectedItemMarker((Panel)createdComponent);
 			break;
 		case "TextLabel":
 			createdComponent = ComponentFactory.createTextLabel(name, color, requestedBounds, layoutEngine,
