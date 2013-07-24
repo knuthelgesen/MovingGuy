@@ -1,0 +1,19 @@
+h2. Layout engine
+The layout engine classes are responsible for calculating the final position of components. There are several types of layout engine, and they must all implement the *LayoutEngine* interface.
+
+[Javadoc for the interface|../apidocs/no/plasmid/movingguy/gui/LayoutEngine.html]
+
+h3. PageLayoutEngine
+This layout engine implementation will make the calling component the same size as the screen. It is used by the [Page|components#Page] component so it can cover the entire screen, other components should use a different engine.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/PageLayoutEngine.html]
+
+h3. RelativePositionLayoutEngine
+This layout engine will position the component relative to it's parent, using the horizontal and vertical alignment to select which part of the parent to align to. The child does not need to confine itself to the parent's bounds, only use that as a starting point for calculating it's own.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/RelativePositionLayoutEngine.html]
+
+h3. CoverParentLayoutEngine
+This layout engine will simply make the component size and position the same as it's parent, useful for covering a whole page for example.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/CoverParentLayoutEngine.html]

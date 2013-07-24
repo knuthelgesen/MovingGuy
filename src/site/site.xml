@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Moving Guy Documentation" xmlns="http://maven.apache.org/DECORATION/1.3.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
+  <body>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html" />
+      <item name="JavaDoc" href="apidocs/index.html" />
+    </menu>
+    <menu name="GUI system">
+      <item name="GUI system" href="gui/gui.html" />
+      <item name="Data objects" href="gui/dataObject.html" />
+      <item name="Components" href="gui/components.html" />
+      <item name="Layout engine" href="gui/layoutEngine.html" />
+    </menu>
+  </body>
+  <bannerLeft>
+    <name>Moving Guy Documentation</name>
+  </bannerLeft>
+  <bannerRight>
+    <src>img/plasmid_splash.png</src>
+    <width>400</width>
+    <height>125</height>
+  </bannerRight>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.3.0</version>
+  </skin>
+</project>

@@ -1,0 +1,58 @@
+h2. The GUI system
+This part of the documentation describes the GUI system developed for and used in the Moving Guy project. This part gives an overview of the system. For a more detailed description of each system part, please see the corresponding page found in the menu on the left.
+
+h3. System overview
+The system is build around the idea that the GUI consists of individual components, that exists as part of a tree structure. This allows for the following behavior to be easily implemented.
+- When a component is moved, all it's children are also moved.
+- When a component is hidden, all it's children are also hidden.
+- When a component receives an input event that it does not consume, it can pass this to it's parent.
+Each component is also responsible for it's rendering, using the GUI rendering system. A layout engine is used to calculate position and size (collectively known as bounds) for each component, and the input handler system can give input events to individual components.
+
+h3. GUI Manager service
+The *GUIManger* service is responsible for handling the components. A special component called [Page|components#Page] is used as the root of each component tree, and only one page can be visible at each time. The GUIManager also keeps track of which component is in focus.
+
+The GUI manager will also maintain a list of all named components, so they can be retrieved by name. All pages must be named, but other components can be named also, if they need to be accessed from outside their normal scope.
+
+The GUI manager service will be polled by the rendering system for the active page, so it can be rendered.
+
+h3. Data objects
+The data object contains information used by the components or other parts of the GUI system, but are otherwise not rendered and contains little or no logic of their own. The data objects includes:
+- Color - contains four values representing a color in OpenGL color space (red, green, blue, alpha).
+- Font - Contains a texture and a set of texture coordinates used when rendering letters.
+- Rectangle - Contains four number values, used to represent a rectangle. Generally used as either screen coordinates or texture coordinates.
+- Texture - Contains information about a texture, so it can be used for rendering, including the texture ID from OpenGL, the image data, and various meta information.
+
+For a more detailed description, see the [data objects page|dataObjects].
+
+h3. Component system
+The components are the visible parts of the GUI system. Everything that will be drawn on screen is part of a component. In addition, the components can have other components as children, so they inherit certain attributes. The position and size of a component is set by the *LayoutEngine* that the component is set to use, often this will be relative to it's parent.
+
+The superclass of all components is the [Component|components#Component] class, which contains many fields required for the behavior of the components. 
+
+Other components include:
+- [Page|components#Page] - Used to organize other components, this must be the root of the component tree. Only one page can be visible at one time.
+- [ColoredPanel|components#ColoredPanel] - Draws a simple one color panel on the screen.
+- [TexturedPanel|components#TexturedPanel] - A simple textured panel, used to draw images.
+- [Menu|components#Menu] - A component that maintains a list of menu items, and contains logic that let's the user select one of them.
+- [MenuItem|components#MenuItem] - Used as an option in a menu.
+- [TextLabel|components#TextLabel] - Draws a string of text on the screen.
+
+For a detailed description, see the [components page|components].
+
+h3. Layout engine
+The layout engines are responsible for calculating the final on-screen position and size(called bounds) of the components. The components can have a _requested bounds_, and this will most often serve as a starting point for calculating the final bounds.
+
+h3. Input handler service and event system
+The *InputHandler* service receives input events from the user and translates them to input events that can be used by the application. These are then passed to the *GUIManager* service which will pass them to the component in focus.
+
+When a component receives an input event, it can either consume the event and perform some action, or send it upward in the component tree to it's parent. In this manner, most events will reach the page, which can dispatch the events to the game logic system.
+
+h3. Rendering
+The rendering system offers methods to the components, so they can render themselves. The methods are defined in the interface *GUIRenderer*. The components are also responsible to call the render functions of their children.
+
+h3. Utility services
+This section lists the services that, while not part of the GUI system, are used by it, and how they are used.
+
+- ProgramStateManager - Maintains program state. Components can access this.
+- Renderer - The renderer firstly calls the *draw()* method of the active page, and provides methods that the components use to draw themselves exposed through the *GUIRenderer* interface.
+- TextureManager - This service maintains a list of all textures used on the system. Uses the renderer to register them with OpenGL.

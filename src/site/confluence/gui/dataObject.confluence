@@ -1,0 +1,24 @@
+h2. Data Object
+This page describes the available data objects in detail. The data objects are used as containers for values used by components, but they are not rendered themselves.
+
+h3. Color
+The Color class contains four values from representing a color in OpenGL. The values range is 0.0 to 1.0. There are several static predefined colors that can be used.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Color.html]
+
+h3. Font
+The Font class contains information required to render text. This includes a font texture, and a map of characters and texture coordinates.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Font.html]
+
+h3. Rectangle
+The Rectangle class contains four numerical values used to represent a 2D rectangle. Mostly used for either screen coordinates or texture coordinates.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Rectangle.html]
+
+h3. Texture
+The Texture class contains information about a texture, so it can be used for rendering, including the texture ID from OpenGL, the image data, and various meta information such as image width, height and mode.
+
+Before being used for rendering, the texture must be registered with OpenGL, this is performed by calling the *registerTextureWithOpenGL()* method of the *Renderer* service.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Texture.html]

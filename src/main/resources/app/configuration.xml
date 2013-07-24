@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppConfig>
+	<!-- Program window parameters -->
+	<ConfigItem name="WINDOW_TITLE" type="java.lang.String" value="Moving guy" />
+	<ConfigItem name="WINDOW_WIDTH" type="java.lang.Integer" value="900" />
+	<ConfigItem name="WINDOW_HEIGHT" type="java.lang.Integer" value="900" />
+	<ConfigItem name="FULLSCREEN" type="java.lang.Boolean" value="false" />
+</AppConfig>

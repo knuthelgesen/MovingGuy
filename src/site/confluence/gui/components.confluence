@@ -1,0 +1,72 @@
+h2. Component system
+This page describes the component system and the available components in detail.
+
+h3. Component factory
+The ComponentFactory contains a set of convenient methods that can be used to create components. The methods will also
+do some light error checking, so if an attribute which is required for proper rendering is missing, a warning will be
+logged (but the component is still created). In the case of a required attribute missing, an error will be thrown.
+
+If a name is supplied, the newly created component will be registered with the *GUIManager* service.
+
+h3. Component
+The Component class is the parent class of all other components. It contains a lot of attributes that influence the behavior and appearance of the components.
+
+- name - The optional name of the component. If the component shall be searchable, the name must be set, and the component registered with the *GUIMananger* service. The value can be set using *setName()* and read using *getName()*.
+- children - This is a list of child components for this component. The method *addChild()* will add a child, and *removeChild()* will remove one. The whole list can be retrieved by calling *getChildren()*. It's also possible to check whether a component is the child of another using the method *isPresentInComponentTree()*.
+- parent - This is the component's parent in the component tree. It will be set when the component is added as the child of another component. The parent can be retrieved using *getParent()*.
+- layoutEngine - The *LayoutEngine* used to calculate final position and size (bounds) of this component. For most components, this is needed to calculate final position, and the component will not be rendered before this is set. Can be set using *setLayoutEngine()* and retrieved using *getLayoutEngine()*.
+- horizontalAlignement - The alignment along the horizontal axis used when calculating the final position of this component. Legal values are *LEFT*, *RIGHT* and *CENTER*. Can be set using *setHorizontalAlignment()* and retrieved using *getLHorizontalAlignment()*.
+- verticalAlignement - The alignment along the vertical axis used when calculating the final position of this component. Legal values are *TOP*, *BOTTOM* and *CENTER*. Can be set using *setVerticalAlignment()* and retrieved using *getLVerticalAlignment()*.
+- requestedBounds - This value is the requested position and size (collectively known as bounds) for this component. It will be used as the starting point when calculating the final bounds by the layout engine. This can be set using *setRequestedBounds()* and read using *getRequestedBounds()*.
+- actualBounds - This value is the final, on-screen position and size (collectively known as bounds) for this component. It will be calculated by the layout engine, using the requested bounds as a starting point. This can be read using *getRequestedBounds()*.
+- hidden - A value indicating whether this component, as well as any children, will be drawn or hidden. Set using *setHidden()* and retrieved using *isHidden()*.
+- keyboardEventListener - The listener that handles any keyboard events sent to this component. Set using *setKeyboardEventListener()* and retrieved using *getKeyboardEventListener()*. Call *handleKeyboardEvent()* on the component to invoke the event listener on a keyboard event.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Component.html]
+
+h3. Page
+The Page class is a special type of component that will not be visible. Instead it is used as a convenient way of grouping other components together. The GUI system can only show one Page at one time, and a Page must always be the root component of any component tree. The attributes and methods of the page is as follows:
+
+- defaultFocusedComponent - This is the component that has focus when the GUI system switches to this page. It can be set using *setDefaultFocusedComponent()* and retrieved using *getDefaultFocusedComponent()*.
+- The Page uses a special layout engine which makes it cover the entire screen, therefore calling *setLayoutEngine()* has no effect.
+- The page must have a name, and this can not be changed, so calling *setName()* will have no effect.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Page.html]
+
+h3. ColoredPanel
+The ColoredPanel will be rendered as a simple colored rectangle. For blending, the alpha channel of the color is usable. The color should use values supported by OpenGL(0.0 - 1.0).
+
+- color - The color used when rendering this panel. The color can be set using *setColor()* and read using *getColor()*.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/ColoredPanel.html]
+
+h3. TexturedPanel
+The TexturedPanel is an extension to the *ColoredPanel* that will render a rectangle filled with a texture. The texture coordinates can be set, and the color will be used for modulating the texture, including blending.
+
+- texture - The texture to use when rendering. Can be set using *setTexture()* and read back using *getTexture()*.
+- textureCoordinates - The texture coordinates used when rendering. Textures are repeatable if the values are set to higher than 1.0 or lower than 0.0. set using *setTextureCoordinates()* and retrieved using *getTextureCoordinates()*. 
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/TexturedPanel.html]
+
+h3. Menu
+The menu is an extension of the *TexturedPanel* that includes logic to allow displaying a set of options, and selecting one of them using keyboard input.
+
+- menuItems - The options available to the user. Must be of type *menuItem*, and will be added to the child list as well as a separate list of menu items. Items can be added by calling *addMenuItem()* and removed using *removeMenuItem()*.
+-selectedItem - The currently selected item. The value can be set directly using *setSelectedItem()*, which will also add the menu item to the menu if it's not already present. Alternatively the methods *selectNextItem()* and *selectPreviousItem()* will set the next or previous item in the item list as selected, looping the list if it hits the beginning or end. The currently selected item can be read back using *getSelectedItem()*.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/Menu.html]
+
+h3. MenuItem
+The menu item class is used as an option in the menu. All selectable options must be of this class. It inherits from *TexturedPanel*. 
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/MenuItem.html]
+
+h3. TextLabel
+Textlabel will draw a string of text using a specified *Font* and size. A color can be specified to modulate the font texture. The TextLabel class inherits from *ColoredPanel*.
+
+- value - The text to display. Set using *setValue()* and read back using *getValue()*.
+- font - The *Font* to use when rendering the text. Can be set using *setFont()* and retrieved using *getFont()*.
+- textWidth - the width of each character of text. Set the width using *setTextWidth()* and read using *getTextWidth()*.
+- textHeight - the height of each character of text. Set the height using *setTextHeight()* and read using *getTextHeight()*.
+
+[Javadoc|../apidocs/no/plasmid/movingguy/gui/TextLabel.html]

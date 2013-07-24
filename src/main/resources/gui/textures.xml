@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Textures>
+	<Texture name="plasmidSplash"				fileName="/img/plasmid_splash.png" />
+	<Texture name="menuPageBackground"			fileName="/img/menu_page_background.png" />
+	<Texture name="menuBackground" 				fileName="/img/menu_background.png" />
+	<Texture name="menuItemBackground"			fileName="/img/menu_item_background.png" />
+	<Texture name="menuSelectedItemBackground"	fileName="/img/menu_selected_item_background.png" />
+	<Texture name="fontA" 						fileName="/img/font_a_9x19.png" />
+</Textures>

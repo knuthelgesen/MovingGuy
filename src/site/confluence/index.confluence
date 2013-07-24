@@ -1,0 +1,15 @@
+h1. Welcome to the documentation for the Moving Guy project!
+
+These pages describe the technical details of the Moving Guy project, which is a software project by Plasmid Games. The goal of the project is to produce a complete computer game, and this documentation is meant to help anyone working on any technical or near-technical task on the project.
+
+The project documentation contains the following parts, which can be accessed using the menu on the left:
+
+h3. Introduction
+The introduction is the document you are reading now.
+
+h3. GUI system
+This part contains technical documentation about the GUI system.
+
+h2. Help
+
+The pages you are reading are created using [Confluence Wiki Markup|http://confluence.atlassian.com/display/DOC/Confluence+Wiki+Markup#ConfluenceWikiMarkup-Images].

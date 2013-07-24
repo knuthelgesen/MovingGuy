@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Colors>
+	<Color name="BLACK" 		values="#000000FF"/>
+	<Color name="RED"			values="#FF0000FF"/>
+	<Color name="GREEN"			values="#00FF00FF"/>
+	<Color name="BLUE"			values="#0000FFFF"/>
+	<Color name="WHITE"			values="#FFFFFFFF"/>
+	<Color name="TRANSPARENT"	values="#00000000"/>
+</Colors>
