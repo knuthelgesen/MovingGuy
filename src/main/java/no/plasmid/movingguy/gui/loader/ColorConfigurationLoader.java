@@ -1,6 +1,6 @@
 package no.plasmid.movingguy.gui.loader;
 
-import no.plasmid.movingguy.gui.Color;
+import no.plasmid.movingguy.gui.dataobject.Color;
 import no.plasmid.movingguy.util.XmlConfigurationLoader;
 
 import org.w3c.dom.Element;
@@ -18,7 +18,7 @@ public class ColorConfigurationLoader extends XmlConfigurationLoader {
 			Color color = parseColor(configPartElement.getAttribute("values"));
 			
 			//Register the color
-			valueContainer.addColor(name, color);
+			dataContainer.addColor(name, color);
 		}
 	}
 

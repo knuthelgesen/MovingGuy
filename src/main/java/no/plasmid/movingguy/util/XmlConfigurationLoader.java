@@ -7,8 +7,20 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import no.plasmid.movingguy.TestDataCreator;
-import no.plasmid.movingguy.gui.Color;
-import no.plasmid.movingguy.service.GUIValueObjectContainer;
+import no.plasmid.movingguy.gui.dataobject.Color;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
+import no.plasmid.movingguy.gui.event.ExitMenuItemKeyboardEventListener;
+import no.plasmid.movingguy.gui.event.KeyboardEventListener;
+import no.plasmid.movingguy.gui.event.MenuKeyboardEventListener;
+import no.plasmid.movingguy.gui.event.OptionsMenuBackKeyboardEventListener;
+import no.plasmid.movingguy.gui.event.OptionsMenuItemKeyboardEventListener;
+import no.plasmid.movingguy.gui.event.SplashScreenKeyboardEventListener;
+import no.plasmid.movingguy.gui.layout.CoverParentLayoutEngine;
+import no.plasmid.movingguy.gui.layout.LayoutEngine;
+import no.plasmid.movingguy.gui.layout.RelativePositionLayoutEngine;
+import no.plasmid.movingguy.gui.layout.RelativePositionLayoutEngine.HorizontalAlignment;
+import no.plasmid.movingguy.gui.layout.RelativePositionLayoutEngine.VerticalAlignment;
+import no.plasmid.movingguy.service.GUIDataObjectContainer;
 import no.plasmid.movingguy.service.ServiceManager;
 
 import org.w3c.dom.Document;
@@ -19,10 +31,10 @@ import org.xml.sax.SAXException;
 
 public abstract class XmlConfigurationLoader {
 
-	protected GUIValueObjectContainer valueContainer;
+	protected GUIDataObjectContainer dataContainer;
 	
 	public XmlConfigurationLoader() {
-		valueContainer = ServiceManager.getInstance().getGUIValueObjectContainer();
+		dataContainer = ServiceManager.getInstance().getGUIDataObjectContainer();
 	}
 	
 	public void loadConfigurationFile(String fileName) {
@@ -79,8 +91,132 @@ public abstract class XmlConfigurationLoader {
 				rc = new Color(redChannel, greenChannel, blueChannel, alphaChannel);
 			} else {
 				//Find the color by name
-				rc = valueContainer.getColor(colorString.toUpperCase());
+				rc = dataContainer.getColor(colorString.toUpperCase());
 			}
+		}
+		return rc;
+	}
+
+	/**
+	 * Parse a string containing the name of a layout engine and return the correct one.
+	 * 
+	 * @param layoutEngineString a string containing the name of a layout engine
+	 * @return the layout engine, or <code>null</code> if not found
+	 */
+	protected LayoutEngine parseLayoutEngine(String layoutEngineString) {
+		LayoutEngine rc = null;
+		if (!"".equals(layoutEngineString)) {
+			switch (layoutEngineString) {
+			case ("CoverParentLayoutEngine"):
+				rc = new CoverParentLayoutEngine();
+				break;
+			case ("RelativePositionLayoutEngine"):
+				rc = new RelativePositionLayoutEngine();
+				break;
+			default:
+				//TODO warn
+			}
+		}
+		return rc;
+	}
+
+	/**
+	 * Parse a string containing the value for horizontal alignment.
+	 * @param horizontalAlignmentString a string containing the value for horizontal alignment
+	 * @return the value for horizontal alignment parsed from the string
+	 */
+	protected HorizontalAlignment parseHorizontalAlignment(String horizontalAlignmentString) {
+		HorizontalAlignment rc = null;
+		if (!"".equals(horizontalAlignmentString)) {
+			rc = HorizontalAlignment.valueOf(horizontalAlignmentString);
+		}
+		return rc;
+	}
+
+	/**
+	 * Parse a string containing the name of a {@link KeyboardEventListener}, and return a new instance of it if found
+	 * @param keyboardListenerString the string containing the name of the keyboard event listener
+	 * @return and instance of the listener, or <code>null</code> if not found
+	 */
+	protected KeyboardEventListener parseKeyboardListener(String keyboardListenerString) {
+		KeyboardEventListener rc = null;
+		if (!"".equals(keyboardListenerString)) {
+			switch (keyboardListenerString) {
+			case ("SplashScreenKeyboardEventListener"):
+				rc = new SplashScreenKeyboardEventListener();
+				break;
+			case ("MenuKeyboardEventListener"):
+				rc = new MenuKeyboardEventListener();
+				break;
+			case ("OptionsMenuItemKeyboardEventListener"):
+				rc = new OptionsMenuItemKeyboardEventListener();
+				break;
+			case ("ExitMenuItemKeyboardEventListener"):
+				rc = new ExitMenuItemKeyboardEventListener();
+				break;
+			case ("OptionsMenuBackKeyboardEventListener"):
+				rc = new OptionsMenuBackKeyboardEventListener();
+				break;
+			default:
+				//TODO warn
+			}
+		}
+		return rc;
+	}
+	
+	/**
+	 * Parse a string containing the values for texture coordinates (four double values).
+	 * @param textureCoordinatesString a string containing the values for texture coordinates
+	 * @return a rectangle containing the values for texture coordinates parsed from the string
+	 */
+	protected Rectangle<Integer> parseRequestedBounds(String requestedBoundsString) {
+		Rectangle<Integer> rc = null;
+		if (!"".equals(requestedBoundsString)) {
+			String[] parts = requestedBoundsString.split(",");
+			rc = new Rectangle<Integer>(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]),
+					Integer.parseInt(parts[3]));
+		}
+		return rc;
+	}
+	
+	/**
+	 * Parse a string containing the values for text sizes (two integer values).
+	 * @param textSizeString a string containing the values for text sizes
+	 * @return an array containing the two values parsed from the string
+	 */
+	protected Integer[] parseTextSizes(String textSizeString) {
+		Integer[] rc = null;
+		if (!"".equals(textSizeString)) {
+			String[] textSizeStringParts = textSizeString.split(",");
+			rc = new Integer[]{Integer.parseInt(textSizeStringParts[0]), Integer.parseInt(textSizeStringParts[1])};
+		}
+		return rc;
+	}
+	
+	/**
+	 * Parse a string containing the values for texture coordinates (four double values).
+	 * @param textureCoordinatesString a string containing the values for texture coordinates
+	 * @return a rectangle containing the values for texture coordinates parsed from the string
+	 */
+	protected Rectangle<Double> parseTextureCoordinates(String textureCoordinatesString) {
+		Rectangle<Double> rc = null;
+		if (!"".equals(textureCoordinatesString)) {
+			String[] parts = textureCoordinatesString.split(",");
+			rc = new Rectangle<Double>(Double.parseDouble(parts[0].trim()), Double.parseDouble(parts[1].trim()),
+					Double.parseDouble(parts[2].trim()), Double.parseDouble(parts[3].trim()));
+		}
+		return rc;
+	}
+	
+	/**
+	 * Parse a string containing the value for vertical alignment.
+	 * @param verticalAlignmentString a string containing the value for vertical alignment
+	 * @return the value for vertical alignment parsed from the string
+	 */
+	protected VerticalAlignment parseVerticalAlignment(String verticalAlignmentString) {
+		VerticalAlignment rc = null;
+		if (!"".equals(verticalAlignmentString)) {
+			rc = VerticalAlignment.valueOf(verticalAlignmentString);
 		}
 		return rc;
 	}

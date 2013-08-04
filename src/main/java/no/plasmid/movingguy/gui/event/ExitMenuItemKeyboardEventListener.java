@@ -32,4 +32,9 @@ public class ExitMenuItemKeyboardEventListener extends NoActionKeyboardEventList
 		}
 	}
 
+	@Override
+	public KeyboardEventListener clone() {
+		return new ExitMenuItemKeyboardEventListener();
+	}
+
 }

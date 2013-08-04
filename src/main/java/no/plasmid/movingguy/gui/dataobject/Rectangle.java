@@ -1,4 +1,4 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.dataobject;
 
 /**
  * Class which contains four numbers, representing a rectangle. Can be used as drawing coordinates, texture coordinates etc

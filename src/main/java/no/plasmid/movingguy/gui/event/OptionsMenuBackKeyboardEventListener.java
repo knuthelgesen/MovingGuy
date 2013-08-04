@@ -27,4 +27,9 @@ public class OptionsMenuBackKeyboardEventListener extends
 		}
 	}
 
+	@Override
+	public KeyboardEventListener clone() {
+		return new OptionsMenuBackKeyboardEventListener();
+	}
+
 }

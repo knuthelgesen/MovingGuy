@@ -1,5 +1,8 @@
 package no.plasmid.movingguy.gui;
 
+import no.plasmid.movingguy.gui.dataobject.Color;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
+import no.plasmid.movingguy.gui.dataobject.Texture;
 import no.plasmid.movingguy.service.Service;
 
 /**

@@ -2,8 +2,8 @@ package no.plasmid.movingguy.util;
 
 import java.io.FileNotFoundException;
 
-import no.plasmid.movingguy.gui.Texture;
-import no.plasmid.movingguy.service.GUIValueObjectContainer;
+import no.plasmid.movingguy.gui.dataobject.Texture;
+import no.plasmid.movingguy.service.GUIDataObjectContainer;
 import no.plasmid.movingguy.service.Renderer;
 import no.plasmid.movingguy.service.ServiceManager;
 
@@ -17,7 +17,7 @@ public class TextureLoader {
 	/**
 	 * The GUI value object container
 	 */
-	private GUIValueObjectContainer valueObjectContainer;
+	private GUIDataObjectContainer dataObjectContainer;
 	
 	/**
 	 * Used to load PNG images for textures
@@ -31,7 +31,7 @@ public class TextureLoader {
 		pngImageLoader = new PNGImageLoader();
 
 		renderer = ServiceManager.getInstance().getRenderer();
-		valueObjectContainer = ServiceManager.getInstance().getGUIValueObjectContainer();
+		dataObjectContainer = ServiceManager.getInstance().getGUIDataObjectContainer();
 	}
 		
 	/**
@@ -55,7 +55,7 @@ public class TextureLoader {
 			renderer.registerTextureWithOpenGL(newTexture);
 
 			//Store the texture
-			valueObjectContainer.addTexture(newTexture);
+			dataObjectContainer.addTexture(newTexture);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

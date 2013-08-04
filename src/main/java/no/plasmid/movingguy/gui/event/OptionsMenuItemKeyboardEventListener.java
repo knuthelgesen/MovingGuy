@@ -35,4 +35,9 @@ public class OptionsMenuItemKeyboardEventListener extends NoActionKeyboardEventL
 		}
 	}
 
+	@Override
+	public KeyboardEventListener clone() {
+		return new OptionsMenuItemKeyboardEventListener();
+	}
+
 }

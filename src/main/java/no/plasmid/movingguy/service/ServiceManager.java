@@ -28,7 +28,7 @@ public class ServiceManager {
 	 */
 	private GameManager gameManager;
 	private GUIManager guiManager;
-	private GUIValueObjectContainer guiValueObjectContainer;
+	private GUIDataObjectContainer guiDataObjectContainer;
 	private InputHandler inputHandler;
 	private ProgramStateManager programStateManager;
 	private Renderer renderer;
@@ -39,7 +39,7 @@ public class ServiceManager {
 	private ServiceManager() {
 		gameManager = new GameManager();
 		guiManager = new GUIManager();
-		guiValueObjectContainer = new GUIValueObjectContainer();
+		guiDataObjectContainer = new GUIDataObjectContainer();
 		inputHandler = new InputHandler();
 		programStateManager = new ProgramStateManager();
 		renderer = new Renderer();
@@ -78,10 +78,10 @@ public class ServiceManager {
 	 * Get the service that acts as container for all known GUI value objects. These are normally read from
 	 * configuration files.
 	 * 
-	 * @return the {@link GUIValueObjectContainer} instance
+	 * @return the {@link GUIDataObjectContainer} instance
 	 */
-	public GUIValueObjectContainer getGUIValueObjectContainer() {
-		return guiValueObjectContainer;
+	public GUIDataObjectContainer getGUIDataObjectContainer() {
+		return guiDataObjectContainer;
 	}
 	
 	/**

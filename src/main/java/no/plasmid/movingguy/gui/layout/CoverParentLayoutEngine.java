@@ -1,4 +1,7 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.layout;
+
+import no.plasmid.movingguy.gui.Component;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
 
 /**
  * Implementation of the LayoutEngine interface that will simply make the component the same size and position as it's

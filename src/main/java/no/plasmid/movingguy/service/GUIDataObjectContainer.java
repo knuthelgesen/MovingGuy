@@ -3,11 +3,13 @@ package no.plasmid.movingguy.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import no.plasmid.movingguy.gui.Color;
-import no.plasmid.movingguy.gui.Font;
-import no.plasmid.movingguy.gui.Texture;
+import no.plasmid.movingguy.gui.Component;
+import no.plasmid.movingguy.gui.dataobject.Color;
+import no.plasmid.movingguy.gui.dataobject.Font;
+import no.plasmid.movingguy.gui.dataobject.Texture;
+import no.plasmid.movingguy.gui.template.Template;
 
-public class GUIValueObjectContainer implements Service {
+public class GUIDataObjectContainer implements Service {
 
 	/**
 	 * Map of all known colors
@@ -24,11 +26,17 @@ public class GUIValueObjectContainer implements Service {
 	 */
 	private Map<String, Font> fonts;
 	
+	/**
+	 * Map of all known templates mapped to the name of the components
+	 */
+	private Map<Class<? extends Component>, Template<? extends Component>> templates;
+	
 	@Override
 	public void initializeService() {
 		colors = new HashMap<String, Color>();
 		textures = new HashMap<String, Texture>();
 		fonts = new HashMap<String, Font>();
+		templates = new HashMap<Class<? extends Component>, Template<? extends Component>>();
 	}
 
 	/**
@@ -81,6 +89,26 @@ public class GUIValueObjectContainer implements Service {
 	 */
 	public void addFont(String name, Font font) {
 		fonts.put(name, font);
+	}
+	
+	/**
+	 * Will return a name for the component type specified, or <code>null</code> if none is found.
+	 * 
+	 * @param componentType the name of the component type
+	 * @return the template for the type, or <code>null</code> if not found
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getTemplate(Class<? extends Component> componentType) {
+		return (T) templates.get(componentType);
+	}
+	
+	/**
+	 * Add a component template to the list of known ones.
+	 * 
+	 * @param template the component template to add
+	 */
+	public void addTemplate(Template<? extends Component> template) {
+		templates.put(template.getComponentClass(), template);
 	}
 	
 }

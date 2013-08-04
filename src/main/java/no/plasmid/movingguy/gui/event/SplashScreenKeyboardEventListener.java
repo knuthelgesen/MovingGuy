@@ -35,5 +35,10 @@ public class SplashScreenKeyboardEventListener extends NoActionKeyboardEventList
 	protected void handleKeyDownEvent(KeyboardEvent e) {
 		guiManager.setActivePage((Page)guiManager.getNamedComponent("MainMenuPage"));
 	}
+
+	@Override
+	public KeyboardEventListener clone() {
+		return new SplashScreenKeyboardEventListener();
+	}
 	
 }

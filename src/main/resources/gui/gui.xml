@@ -1,81 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GUI>
 	<Page name="SplashScreen" focusedComponentName="splashScreenBackground">
-		<Panel name="splashScreenBackground" color="WHITE" layoutEngine="CoverParentLayoutEngine"
+		<Panel name="splashScreenBackground" layoutEngine="CoverParentLayoutEngine"
 				keyboardEventListener="SplashScreenKeyboardEventListener">
-			<Panel color="WHITE" requestedBounds="-400,-125,400,125" layoutEngine="RelativePositionLayoutEngine"
-					horizontalAlignment="CENTER" verticalAlignment="CENTER" texture="plasmidSplash" 
-					textureCoordinates="0.0,1.0,1.0,0.0" />
+			<Panel requestedBounds="-400,-125,400,125" horizontalAlignment="CENTER" verticalAlignment="CENTER"
+					texture="plasmidSplash" />
 		</Panel>
 	</Page>
 	<!-- Page for the menus -->
 	<Page name="MainMenuPage" focusedComponentName="mainMenu">
-		<Panel color="WHITE" layoutEngine="CoverParentLayoutEngine" texture="menuPageBackground"
+		<Panel layoutEngine="CoverParentLayoutEngine" texture="menuPageBackground"
 				textureCoordinates="0.0,3.0,3.0,0.0">
 			<!-- Main menu -->
-			<Menu name="mainMenu" color="#ffffff88" requestedBounds="-200,-200,0,200"
-					layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="RIGHT" verticalAlignment="CENTER"
-					texture="menuBackground" textureCoordinates="0.0,1.0,1.0,0.0"
-					keyboardEventListener="MenuKeyboardEventListener">
-				<SelectedItemMarker color="WHITE" layoutEngine="RelativePositionLayoutEngine" requestedBounds="-10,10,-10,10"
-						texture="menuSelectedItemBackground" textureCoordinates="0.0,1.0,1.0,0.0"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" />
-				<TextLabel color="GREEN" requestedBounds="-81,-50,81,14" layoutEngine="RelativePositionLayoutEngine"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" value="MAIN MENU" font="fontA"
-						textSize="18,36"/>
+			<Menu name="mainMenu" requestedBounds="-200,-200,0,200" horizontalAlignment="RIGHT">
+				<SelectedItemMarker requestedBounds="-10,10,-10,10" texture="menuSelectedItemBackground"
+						horizontalAlignment="CENTER" />
+				<TextLabel requestedBounds="-81,-50,81,14" verticalAlignment="TOP" value="MAIN MENU" />
 				<!-- Menu item for "New game" -->
-				<MenuItem color="WHITE" requestedBounds="-75,-150,75,-100" layoutEngine="RelativePositionLayoutEngine"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" texture="menuItemBackground"
-						textureCoordinates="0.0,1.0,1.0,0.0">
-					<TextLabel color="GREEN" requestedBounds="-72,-15,72,11" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="CENTER" value="New Game" font="fontA"
-							textSize="18,36"/>
+				<MenuItem requestedBounds="-75,-150,75,-100" keyboardEventListener="ExitMenuItemKeyboardEventListener">
+					<TextLabel  requestedBounds="-72,-15,72,11" value="New Game" />
 				</MenuItem>
 				<!-- Menu item for "Options" -->
-				<MenuItem color="WHITE" requestedBounds="-75,-250,75,-200" layoutEngine="RelativePositionLayoutEngine"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" texture="menuItemBackground"
-						textureCoordinates="0.0,1.0,1.0,0.0" keyboardEventListener="OptionsMenuItemKeyboardEventListener">
-					<TextLabel color="GREEN" requestedBounds="-63,-15,63,11" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="CENTER" value="Options" font="fontA"
-							textSize="18,36"/>
+				<MenuItem requestedBounds="-75,-250,75,-200" keyboardEventListener="OptionsMenuItemKeyboardEventListener">
+					<TextLabel requestedBounds="-63,-15,63,11" value="Options" />
 				</MenuItem>
 				<!-- Menu item for "Exit" -->
-				<MenuItem color="WHITE" requestedBounds="-75,-350,75,-300" layoutEngine="RelativePositionLayoutEngine"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" texture="menuItemBackground"
-						textureCoordinates="0.0,1.0,1.0,0.0" keyboardEventListener="ExitMenuItemKeyboardEventListener">
-					<TextLabel color="GREEN" requestedBounds="-36,-15,36,11" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="CENTER" value="Exit" font="fontA"
-							textSize="18,36"/>
+				<MenuItem requestedBounds="-75,-350,75,-300" keyboardEventListener="ExitMenuItemKeyboardEventListener">
+					<TextLabel requestedBounds="-36,-15,36,11" value="Exit" />
 				</MenuItem>
 			</Menu>
 			<!-- Options panel -->
-			<Menu name="optionsMenu" color="#ffffff88" requestedBounds="-300,-400,300,400"
-					layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="CENTER" verticalAlignment="CENTER"
-					texture="menuBackground" textureCoordinates="0.0,1.0,1.0,0.0"
-					keyboardEventListener="MenuKeyboardEventListener" hidden="true">
-				<SelectedItemMarker color="WHITE" layoutEngine="RelativePositionLayoutEngine" requestedBounds="-10,10,-10,10"
-						texture="menuSelectedItemBackground" textureCoordinates="0.0,1.0,1.0,0.0"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" />
-
-				<TextLabel  color="GREEN" requestedBounds="-63,-46,63,-11" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="TOP"
-							value="OPTIONS" font="fontA" textSize="18,36"/>
-
-				<TextLabel  color="GREEN" requestedBounds="-90,-96,90,-61" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="TOP"
-							value="Resolution" font="fontA" textSize="18,36"/>
-
-				<TextLabel  color="GREEN" requestedBounds="-90,-196,90,-161" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="TOP"
-							value="Full Screen" font="fontA" textSize="18,36"/>
-
+			<Menu name="optionsMenu" requestedBounds="-300,-400,300,400" hidden="true">
+				<SelectedItemMarker requestedBounds="-10,10,-10,10" texture="menuSelectedItemBackground"
+						horizontalAlignment="CENTER" />
+				<TextLabel  requestedBounds="-63,-46,63,-11" verticalAlignment="TOP" value="OPTIONS" />
+				<TextLabel   requestedBounds="-90,-96,90,-61" verticalAlignment="TOP" value="Resolution" />
+				<TextLabel  requestedBounds="-90,-196,90,-161" verticalAlignment="TOP" value="Full Screen" />
 				<!-- Menu item for "Back" -->
-				<MenuItem color="WHITE" requestedBounds="-75,-250,75,-200" layoutEngine="RelativePositionLayoutEngine"
-						horizontalAlignment="CENTER" verticalAlignment="TOP" texture="menuItemBackground"
-						textureCoordinates="0.0,1.0,1.0,0.0" keyboardEventListener="OptionsMenuBackKeyboardEventListener">
-					<TextLabel color="GREEN" requestedBounds="-36,-15,36,11" layoutEngine="RelativePositionLayoutEngine"
-							horizontalAlignment="CENTER" verticalAlignment="CENTER" value="Back" font="fontA"
-							textSize="18,36"/>
+				<MenuItem requestedBounds="-75,-250,75,-200" keyboardEventListener="OptionsMenuBackKeyboardEventListener">
+					<TextLabel requestedBounds="-36,-15,36,11" value="Back" />
 				</MenuItem>
 			</Menu>
 		</Panel>

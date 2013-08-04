@@ -1,7 +1,7 @@
 package no.plasmid.movingguy.gui.loader;
 
-import no.plasmid.movingguy.gui.Font;
-import no.plasmid.movingguy.gui.Texture;
+import no.plasmid.movingguy.gui.dataobject.Font;
+import no.plasmid.movingguy.gui.dataobject.Texture;
 import no.plasmid.movingguy.util.XmlConfigurationLoader;
 
 import org.w3c.dom.Element;
@@ -16,10 +16,10 @@ public class FontConfigurationLoader extends XmlConfigurationLoader {
 		if ("Font".equals(type)) {
 			//Read values
 			String name = configPartElement.getAttribute("name");
-			Texture texture = valueContainer.getTexture(configPartElement.getAttribute("texture"));
+			Texture texture = dataContainer.getTexture(configPartElement.getAttribute("texture"));
 			
 			//Register the color
-			valueContainer.addFont(name, new Font(texture));
+			dataContainer.addFont(name, new Font(texture));
 		}
 	}
 

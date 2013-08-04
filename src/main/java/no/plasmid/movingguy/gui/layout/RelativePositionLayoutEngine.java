@@ -1,4 +1,7 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.layout;
+
+import no.plasmid.movingguy.gui.Component;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
 
 /**
  * This implementation of the layout engine will position the component relative to it's parent. The alignment will be

@@ -1,0 +1,7 @@
+<Template>
+	<Page /> <!-- No values, but included for completeness -->
+	<Panel backgroundColor="WHITE" layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="LEFT" verticalAlignment="TOP" textureCoordinates="0.0,1.0,1.0,0.0"/>
+	<Menu backgroundColor="#ffffff88" layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="CENTER" verticalAlignment="CENTER" texture="menuBackground" textureCoordinates="0.0,1.0,1.0,0.0" keyboardEventListener="MenuKeyboardEventListener" />
+	<MenuItem backgroundColor="WHITE" layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="CENTER" verticalAlignment="TOP" texture="menuItemBackground" textureCoordinates="0.0,1.0,1.0,0.0"/>
+	<TextLabel backgroundColor="GREEN" layoutEngine="RelativePositionLayoutEngine" horizontalAlignment="CENTER" verticalAlignment="CENTER" font="fontA" textSize="18,36"/>
+</Template>

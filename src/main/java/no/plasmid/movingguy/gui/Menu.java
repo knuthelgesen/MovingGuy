@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
 import no.plasmid.movingguy.service.GUIManager;
 import no.plasmid.movingguy.service.ServiceManager;
 
@@ -43,8 +44,21 @@ public class Menu extends Panel {
 	 */
 	public Menu() {
 		guiManager = ServiceManager.getInstance().getGUIManager();
-		
 		menuItems = new LinkedHashSet<MenuItem>();
+	}
+	
+	/**
+	 * Copy constructor
+	 * 
+	 * @param menu the Menu to copy
+	 */
+	public Menu(Menu menu) {
+		super(menu);
+		
+		guiManager = ServiceManager.getInstance().getGUIManager();
+		menuItems = new LinkedHashSet<MenuItem>();
+
+		setSelectedItemMarker(null != menu.selectedItemMarker ? new Panel(menu.selectedItemMarker) : null);
 	}
 	
 	/**
@@ -198,7 +212,7 @@ public class Menu extends Panel {
 	@Override
 	public void draw(GUIRenderer renderer) {
 		if (!isHidden()) {
-			renderer.fillTexturedRectangle(getActualBounds(), getColor(), getTexture(), getTextureCoordinates());
+			renderer.fillTexturedRectangle(getActualBounds(), getBackgroundColor(), getTexture(), getTextureCoordinates());
 			//Render children
 			for (Component child : getChildren()) {
 				child.draw(renderer);
@@ -210,5 +224,5 @@ public class Menu extends Panel {
 			}
 		}		
 	}
-
+	
 }

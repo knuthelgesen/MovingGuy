@@ -1,4 +1,4 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.dataobject;
 
 import java.util.HashMap;
 import java.util.Map;

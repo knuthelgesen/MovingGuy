@@ -4,6 +4,7 @@ import no.plasmid.movingguy.Configuration;
 import no.plasmid.movingguy.gui.loader.ColorConfigurationLoader;
 import no.plasmid.movingguy.gui.loader.FontConfigurationLoader;
 import no.plasmid.movingguy.gui.loader.GuiConfigurationLoader;
+import no.plasmid.movingguy.gui.loader.TemplateConfigurationLoader;
 import no.plasmid.movingguy.gui.loader.TextureConfigurationLoader;
 import no.plasmid.movingguy.service.ServiceManager;
 
@@ -110,7 +111,7 @@ public class GUI {
 	private void initializeGUIServices() {
 		ServiceManager serviceManager = ServiceManager.getInstance();
 		serviceManager.getRenderer().initializeService();
-		serviceManager.getGUIValueObjectContainer().initializeService();
+		serviceManager.getGUIDataObjectContainer().initializeService();
 		serviceManager.getGUIManager().initializeService();
 	}
 	
@@ -130,6 +131,10 @@ public class GUI {
 		FontConfigurationLoader fontConfigLoader = new FontConfigurationLoader();
 		fontConfigLoader.loadConfigurationFile("/gui/fonts.xml");
 		
+		//Load templates from configuration file
+		TemplateConfigurationLoader templateConfigLoader = new TemplateConfigurationLoader();
+		templateConfigLoader.loadConfigurationFile("/gui/template.xml");
+
 		//Load GUI from configuration file
 		GuiConfigurationLoader guiConfigLoader = new GuiConfigurationLoader();
 		guiConfigLoader.loadConfigurationFile("/gui/gui.xml");

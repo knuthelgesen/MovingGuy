@@ -34,4 +34,9 @@ public class MenuKeyboardEventListener extends NoActionKeyboardEventListener {
 		}
 	}
 
+	@Override
+	public KeyboardEventListener clone() {
+		return new MenuKeyboardEventListener();
+	}
+
 }

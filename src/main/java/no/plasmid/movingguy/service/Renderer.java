@@ -3,11 +3,11 @@ package no.plasmid.movingguy.service;
 import java.nio.IntBuffer;
 
 import no.plasmid.movingguy.Configuration;
-import no.plasmid.movingguy.gui.Color;
 import no.plasmid.movingguy.gui.GUIRenderer;
 import no.plasmid.movingguy.gui.Page;
-import no.plasmid.movingguy.gui.Rectangle;
-import no.plasmid.movingguy.gui.Texture;
+import no.plasmid.movingguy.gui.dataobject.Color;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
+import no.plasmid.movingguy.gui.dataobject.Texture;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;

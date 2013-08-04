@@ -1,5 +1,9 @@
 package no.plasmid.movingguy.gui;
 
+import no.plasmid.movingguy.gui.dataobject.Color;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
+import no.plasmid.movingguy.gui.dataobject.Texture;
+
 /**
  * This component will be rendered as a panel with a texture. The texture will be modified by the color of the panel.
  * 
@@ -11,7 +15,7 @@ public class Panel extends Component {
 	/**
 	 * The color used when rendering this panel
 	 */
-	private Color color = null;
+	private Color backgroundColor = null;
 		
 	/**
 	 * The texture to use when rendering this panel
@@ -28,15 +32,27 @@ public class Panel extends Component {
 	 */
 	public Panel() {
 		textureCoordinates = new Rectangle<Double>(0.0, 1.0, 1.0, 0.0);
-
 		texture = Texture.EMPTY;
+	}
+	
+	/**
+	 * Copy constructor.
+	 * 
+	 * @param panel the Panel to copy
+	 */
+	public Panel(Panel panel) {
+		super(panel);
+		
+		setBackgroundColor(panel.getBackgroundColor());
+		setTexture(panel.getTexture());
+		setTextureCoordinates(panel.getTextureCoordinates());
 	}
 	
 	/**
 	 * @return the color used when rendering this panel
 	 */
-	public Color getColor() {
-		return color;
+	public Color getBackgroundColor() {
+		return backgroundColor;
 	}
 
 	/**
@@ -44,8 +60,8 @@ public class Panel extends Component {
 	 * 
 	 * @param color the color to use when rendering the panel
 	 */
-	public void setColor(Color color) {
-		this.color = color;
+	public void setBackgroundColor(Color color) {
+		this.backgroundColor = color;
 	}
 
 	/**
@@ -81,7 +97,7 @@ public class Panel extends Component {
 	@Override
 	public void draw(GUIRenderer renderer) {
 		if (!isHidden()) {
-			renderer.fillTexturedRectangle(getActualBounds(), getColor(), texture, textureCoordinates);
+			renderer.fillTexturedRectangle(getActualBounds(), getBackgroundColor(), texture, textureCoordinates);
 			for (Component child : getChildren()) {
 				child.draw(renderer);
 			}

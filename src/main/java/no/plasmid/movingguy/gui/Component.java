@@ -3,10 +3,12 @@ package no.plasmid.movingguy.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.plasmid.movingguy.gui.RelativePositionLayoutEngine.HorizontalAlignment;
-import no.plasmid.movingguy.gui.RelativePositionLayoutEngine.VerticalAlignment;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
 import no.plasmid.movingguy.gui.event.KeyboardEvent;
 import no.plasmid.movingguy.gui.event.KeyboardEventListener;
+import no.plasmid.movingguy.gui.layout.LayoutEngine;
+import no.plasmid.movingguy.gui.layout.RelativePositionLayoutEngine.HorizontalAlignment;
+import no.plasmid.movingguy.gui.layout.RelativePositionLayoutEngine.VerticalAlignment;
 
 /**
  * Base class for all GUI components
@@ -71,6 +73,23 @@ public abstract class Component {
 	 */
 	public Component() {
 		children = new ArrayList<Component>();
+	}
+	
+	/**
+	 * Copy constructor
+	 * @param component the Component to copy
+	 */
+	public Component(Component component) {
+		children = new ArrayList<Component>();
+		
+		//Copy values
+		setName(null != component.getName() ? new String(component.getName()) : null);
+		setLayoutEngine(component.getLayoutEngine());
+		setHorizontalAlignment(component.getHorizontalAlignment());
+		setVerticalAlignment(component.getVerticalAlignment());
+		setRequestedBounds(component.getRequestedBounds());
+		setHidden(component.isHidden());
+		setKeyboardEventListener(null != component.getKeyboardEventListener() ? component.getKeyboardEventListener().clone() : null);
 	}
 	
 	/**
@@ -263,8 +282,16 @@ public abstract class Component {
 	 * @param keyboardEventListener the handler, which must implement {@link KeyboardEventListener}
 	 */
 	public void setKeyboardEventListener(KeyboardEventListener keyboardEventListener) {
+		//Unregister this component with the current listener
+		if (null != this.keyboardEventListener) {
+			this.keyboardEventListener.setOwner(null);
+		}
+		//Set the new listener
 		this.keyboardEventListener = keyboardEventListener;
-		keyboardEventListener.setOwner(this);
+		//Register this component with the new listener
+		if (null != keyboardEventListener) {
+			keyboardEventListener.setOwner(this);
+		}
 	}
 
 	/**

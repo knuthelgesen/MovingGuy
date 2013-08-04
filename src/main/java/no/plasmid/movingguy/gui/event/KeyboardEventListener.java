@@ -82,4 +82,10 @@ public abstract class KeyboardEventListener {
 	 */
 	protected abstract void handleKeyTypedEvent(KeyboardEvent event);
 	
+	/**
+	 * Clone this event listener to a new instance
+	 * @return the new instance
+	 */
+	public abstract KeyboardEventListener clone();
+	
 }

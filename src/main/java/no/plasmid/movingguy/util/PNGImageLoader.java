@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 
 import org.lwjgl.opengl.GL11;
 
-import no.plasmid.movingguy.gui.Texture;
+import no.plasmid.movingguy.gui.dataobject.Texture;
 
 public class PNGImageLoader {
 

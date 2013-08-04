@@ -1,5 +1,8 @@
 package no.plasmid.movingguy.gui;
 
+import no.plasmid.movingguy.gui.dataobject.Font;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
+
 /**
  * This component will be rendered as a text label, over one line. Each character is rendered by itself, so final size
  * of the component can be calculated. Text will always begin on the bottom left of the component's bounds.
@@ -28,6 +31,27 @@ public class TextLabel extends Panel {
 	 * The height of each character, in pixels
 	 */
 	private int textHeight;
+
+	/**
+	 * Constructor
+	 */
+	public TextLabel() {
+		super();
+	}
+	
+	/**
+	 * Copy constructor
+	 * 
+	 * @param textLabel the TextLabel to copy
+	 */
+	public TextLabel(TextLabel textLabel) {
+		super(textLabel);
+		
+		setValue(new String(textLabel.value));
+		setFont(textLabel.font);
+		setTextWidth(textLabel.textWidth);
+		setTextHeight(textLabel.textHeight);
+	}
 	
 	/**
 	 * @return a String with the textual value of the label
@@ -97,7 +121,7 @@ public class TextLabel extends Panel {
 			
 			for (char character : value) {
 				//Draw each character of the label
-				renderer.fillTexturedRectangle(new Rectangle<Integer>(xPos, yPos, xPos + textWidth, yPos + textHeight), getColor(), font.getFontTexture(), Font.textureCoordinates.get(character));
+				renderer.fillTexturedRectangle(new Rectangle<Integer>(xPos, yPos, xPos + textWidth, yPos + textHeight), getBackgroundColor(), font.getFontTexture(), Font.textureCoordinates.get(character));
 				xPos += textWidth;
 			}
 			

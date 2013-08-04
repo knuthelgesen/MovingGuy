@@ -1,4 +1,7 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.layout;
+
+import no.plasmid.movingguy.gui.Component;
+import no.plasmid.movingguy.gui.dataobject.Rectangle;
 
 /**
  * Interface for classes that are used to calculate the final bounds of components.

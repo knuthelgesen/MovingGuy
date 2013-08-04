@@ -1,4 +1,4 @@
-package no.plasmid.movingguy.gui;
+package no.plasmid.movingguy.gui.dataobject;
 
 /**
  * A color that can be used when rendering with OpenGL. Will contain 4 double values.
